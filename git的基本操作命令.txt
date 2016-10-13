@@ -1,4 +1,4 @@
-1、git init                 
+﻿1、git init                 
    把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
 
 2、git add 文件名           
@@ -116,3 +116,8 @@
     
     git config --global user.email "**"
     给自己的git设置邮箱
+31、git config user.name
+    查看git的用户名
+
+    git config user.email
+    查看git的邮箱地址
