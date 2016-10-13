@@ -1,0 +1,114 @@
+1、git init                 
+   把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
+
+2、git add 文件名           
+   添加一个文件到暂存区里面
+
+3、git add -A              
+   添加所有文件到暂存区里面
+
+4、git commit -m '提交的注释'              
+   把文件提交到版本库
+
+5、git status               
+   查看版本库中文件的状态
+
+6、git log
+   查看详细的历史记录
+
+7、git log --pretty=oneline
+   查看简单的历史记录
+
+8、cat 文件名
+   查看某个文件内容
+
+9、git reset --hard HEAD^
+   把当前版本回退到上一个版本
+
+10、git reset --hard HEAD^^
+   把当前版本回退到上上一个版本
+
+11、git reset --hard HEAD~100
+   把当前版本回退100个版本
+
+12、dir
+   查看某个文件夹下的所有文件
+
+13、cd 路径
+   访问某个路径
+
+14、git reset --hard 版本号
+   回退到指定版本号的版本
+
+15、git reflog
+   获取版本号
+  
+16、git checkout -- 文件名
+   在文件做了修改，但是还未提交时，输入此命令，把文件在工作区做的修改全部撤销，这里有2种情况，如下：
+   1、文件自动修改后，还没有放到暂存区，使用 撤销修改就回到和版本库一模一样的状态。
+   2、另外一种是文件已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。
+
+17、rm 文件名
+   删除提交的文件，如想彻底从版本库中删除此文件，还要一如既往的add和commit才算彻底删除。
+
+18、如何添加远程库？
+    本地已经创建了一个git库(假设库名叫:testgit)。
+       1、在github上创建一个git库，库名也叫testgit，新建好得到一个路径:https://github.com/liyong123/testgit.git。
+       2、在本地库运行:git remote add origin https://github.com/liyong123/testgit.git。这样本地库和远程库就联系起来了。
+       3、在本地库运行:git push -u origin master。将本地的修改内容推送到远程库，这样github的仓库可以作为备份，又可以其他人通过该仓库来协作。
+       由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来， 
+       在以后的推送或者拉取时就可以简化命令。推送成功后,可以立刻在github页面中看到远程库的内容已经和本地一模一样了。
+       从现在起，只要本地作了提交，就可以通过如下命令:git push origin master把本地master分支的最新修改推送到github上了，现在你就拥有了真正的分布式版本库了。
+
+19、如何克隆远程库？
+    首先本地没有库，完全是克隆远程库。
+       1、在github上创建一个git仓库，假设仓库的名称叫testCloneRepository。（勾选README选项）。
+       2、在本地自己新建的某个文件夹下运行:git clone https://github.com/liyong123/testCloneRepository.git。在本地就得到一个testCloneRepository的仓库。
+       3、推送步骤和第18条:如何添加远程库相同。
+
+20、创建和合并分支：
+    在版本回退里，你已经知道，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。
+    1、git checkout -b dev
+       创建dev分支，并切换到dev分支上。此命令相当于两条命令:git branch dev,创建分支dev；git checkout dev，切换到dev分支下。
+    2、git branch 
+       查看分支，git会列出所有分支，当前分支前面会加一个*号。
+    3、在分支下，对文件做修改，然后和前面一样，添加、提交。 
+    4、切换到主分支master下，git checkout master。查看分支下刚才修改的文件，发现主分支下的这个文件内容没有变化。
+    5、把分支dev的内容合并到主分支master上:git merge dev。git merge命令用于合并指定分支到当前分支上，合并后，再查看文件内容，可以看到，和dev分支最新提交的是完全一样的。
+
+21、git branch -d dev
+    删除分支dev
+
+22、如何处理冲突？
+    在分支的某个文件的某个地方新增内容，然后提交。在主分支的相同文件的相同地方新增内容，然后提交。然后运行 git merge 分支名，合并分支，会产生冲突，将主分支下的冲突内容改成和冲突之前主分支修改文件的内容相同就行，再次提交。
+    master主分支应该是非常稳定的，也就是用来发布新版本，一般情况下不允许在上面干活，干活一般情况下在新建的dev分支上干活
+
+23、git merge –no-ff  -m “注释” dev
+    通常合并分支时，git一般使用”Fast forward”模式，在这种模式下，删除分支后，会丢掉分支信息，现在我们使用带参数 –no-ff来禁用”Fast forward”模式
+ 
+24、git checkout  –b dev origin/dev
+    创建远程库的dev分支到本地来。
+
+25、git pull 
+    将远程库上最新的提交内容从远程库抓下来。
+
+26、mkdir **
+    创建一个目录名
+
+27、git diff **  
+    查看**文件修改了哪些内容
+
+28、git rm **
+    删除**文件
+
+29、git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作
+
+    git stash list 查看所有被隐藏的文件列表
+
+    git stash apply 恢复被隐藏的文件，但是内容不删除
+
+    git stash drop 删除文件
+
+    git stash pop 恢复文件的同时 也删除文件
+    
+
